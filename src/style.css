@@ -1,0 +1,234 @@
+/* ─────────────────────────────────────────────
+   Google Fonts — loaded via <link> in index.html
+   Removed @import to prevent render-blocking
+─────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   CSS Custom Properties
+───────────────────────────────────────────── */
+:root {
+  --cream:      #191208;
+  --warm:       #C3AA84;
+  --earth:      #8b6545;
+  --moss:       #7a9e7e;
+  --deep:       #1a1208;
+  --ink:        #2e1f0f;
+  --shadow:     #EEEEE6;
+  --mid:        #241608;
+  --text-dim:   #23272D;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Raleway', system-ui, sans-serif;
+
+  --ease: cubic-bezier(.25, .46, .45, .94);
+  --t:    .4s;
+  --sp:   clamp(5rem, 10vw, 9rem);
+}
+
+/* ─────────────────────────────────────────────
+   Reset
+───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size:       16px;
+}
+
+body {
+  background:   var(--shadow);
+  color:        var(--cream);
+  font-family:  var(--font-sans);
+  font-weight:  300;
+  line-height:  1.7;
+  overflow-x:   hidden;
+}
+
+img {
+  display:    block;
+  max-width:  100%;
+  height:     auto;
+  object-fit: cover;
+}
+
+a {
+  color:           inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ─────────────────────────────────────────────
+   Grain overlay
+───────────────────────────────────────────── */
+body::before {
+  content:    '';
+  position:   fixed;
+  inset:      0;
+  z-index:    1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: .22;
+}
+
+/* ─────────────────────────────────────────────
+   Shared layout helpers
+───────────────────────────────────────────── */
+section {
+  position:  relative;
+  z-index:   2;
+  padding:   var(--sp) 0;
+  /* CSS Containment: tells the browser this section is an isolated
+     rendering context. Reflows, style recalcs and paints inside
+     cannot escape it — scroll thrash is contained. */
+  contain:   layout style paint;
+}
+
+.container {
+  max-width: 1160px;
+  margin:    0 auto;
+  padding:   0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ─────────────────────────────────────────────
+   Shared typography helpers
+───────────────────────────────────────────── */
+.section-label {
+  display:     flex;
+  align-items: center;
+  gap:         .8rem;
+  font-size:   .6rem;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color:       var(--warm);
+  opacity:     .65;
+  margin-bottom: 1.4rem;
+}
+.section-label::before {
+  content:    '';
+  display:    block;
+  width:      22px;
+  height:     1px;
+  background: var(--warm);
+  opacity:    .6;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family:  var(--font-serif);
+  font-weight:  300;
+  font-size:    clamp(2.2rem, 5vw, 4rem);
+  line-height:  1.05;
+  letter-spacing: .03em;
+  color:        var(--cream);
+  margin-bottom: 1.6rem;
+}
+.section-title em {
+  font-style: italic;
+  color:      var(--warm);
+}
+
+.section-body {
+  font-size:   .95rem;
+  line-height: 1.95;
+  color:       #23272D;
+  max-width:   58ch;
+}
+
+/* ─────────────────────────────────────────────
+   Photo placeholder
+───────────────────────────────────────────── */
+.photo-ph {
+  position:   absolute;
+  inset:      0;
+  background: radial-gradient(ellipse at 40% 55%, #3a220c 0%, #1a1208 65%);
+  display:    flex;
+  align-items:    flex-end;
+  justify-content: flex-start;
+  padding:    1rem 1.2rem;
+}
+.photo-ph::after {
+  content:   attr(data-caption);
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color:     var(--warm);
+  opacity:   .22;
+}
+.photo-ph img {
+  position:   absolute;
+  inset:      0;
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  display:    block;
+}
+
+/* ─────────────────────────────────────────────
+   Shared button helpers
+───────────────────────────────────────────── */
+.btn {
+  display:     inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size:   .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding:     .9rem 2rem;
+  transition:  all var(--t) var(--ease);
+  cursor:      pointer;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: rgba(200, 169, 126, .1);
+  border:     1px solid rgba(200, 169, 126, .55);
+  color:      #EFEAE0;
+}
+.btn-primary:hover {
+  background:  rgba(200, 169, 126, .22);
+  border-color: var(--warm);
+}
+.btn-ghost {
+  background: transparent;
+  border:     1px solid rgba(245, 239, 230, .18);
+  color:      rgba(245, 239, 230, .65);
+}
+.btn-ghost:hover {
+  border-color: rgba(245, 239, 230, .45);
+  color:        var(--cream);
+}
+
+/* ─────────────────────────────────────────────
+   Fade-up entrance animation
+───────────────────────────────────────────── */
+.fade-up {
+  opacity:    0;
+  transform:  translateY(22px);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+  /* Browser can create the composited layer ahead of the transition */
+  will-change: opacity, transform;
+}
+.fade-up.visible {
+  opacity:    1;
+  transform:  translateY(0);
+  /* Release the layer after the animation completes so idle elements
+     don't waste GPU memory */
+  will-change: auto;
+}
+.stagger .fade-up:nth-child(1) { transition-delay: 0s; }
+.stagger .fade-up:nth-child(2) { transition-delay: .1s; }
+.stagger .fade-up:nth-child(3) { transition-delay: .2s; }
+.stagger .fade-up:nth-child(4) { transition-delay: .3s; }
+.stagger .fade-up:nth-child(5) { transition-delay: .4s; }
+.stagger .fade-up:nth-child(6) { transition-delay: .5s; }
