@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-const SHEETS_URL = import.meta.env.VITE_SHEETS_URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6HCTovp8TAdRse4O0KMUoMLtU8tncZT7YX2qQajFh6Vcde-krAYMZ87Sdd4tdnQRw/exec'
 
 export function useContactForm() {
   const submitted = ref(false)
@@ -14,34 +14,27 @@ export function useContactForm() {
       return
     }
 
-    if (!SHEETS_URL) {
-      console.error('[useContactForm] VITE_SHEETS_URL not set in .env.local')
-      error.value = 'Error de configuración. Inténtalo de nuevo más tarde.'
-      return
-    }
-
     const data = {
-      nombre:  form.nombre.value.trim(),
-      email:   form.email.value.trim(),
-      asunto:  form.asunto.value.trim(),
-      mensaje: form.mensaje.value.trim(),
+      nombre:  form.nombre.value,
+      email:   form.email.value,
+      asunto:  form.asunto.value,
+      mensaje: form.mensaje.value,
     }
 
     loading.value = true
-    error.value   = ''
 
     try {
-      const res = await fetch(SHEETS_URL, {
-        method:  'POST',
-        // Apps Script requires text/plain to avoid CORS preflight
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body:    JSON.stringify(data),
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        body:   JSON.stringify(data),
       })
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      submitted.value = true
-    } catch (e) {
-      error.value = 'No se pudo enviar el mensaje. Por favor, inténtalo de nuevo.'
+      alert('Mensaje enviado correctamente.')
+      form.reset()
+    } catch (err) {
+      console.error('Error enviando formulario:', err)
+      alert('Hubo un error al enviar el formulario. Inténtalo de nuevo.')
     } finally {
       loading.value = false
     }
