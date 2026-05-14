@@ -52,7 +52,11 @@
                 required
               />
             </div>
-            <button type="submit" class="form-submit">Enviar mensaje</button>
+            <p v-if="error" class="form-error" role="alert">{{ error }}</p>
+            <button type="submit" class="form-submit" :disabled="loading" :aria-busy="loading">
+              <span v-if="loading" class="form-spinner" aria-hidden="true"></span>
+              {{ loading ? 'Enviando…' : 'Enviar mensaje' }}
+            </button>
           </form>
 
           <div v-else class="form-success" role="status" aria-live="polite">
@@ -127,7 +131,7 @@
 import { contactLinks } from '@/data/contact'
 import { useContactForm } from '@/composables/useContactForm'
 
-const { submitted, handleSubmit } = useContactForm()
+const { submitted, loading, error, handleSubmit } = useContactForm()
 </script>
 
 <style scoped>
@@ -205,6 +209,37 @@ textarea.form-field { resize: vertical; min-height: 120px; }
   background:   rgba(200, 169, 126, .18);
   border-color: var(--warm);
   color:        var(--cream);
+}
+.form-submit:disabled {
+  opacity: .55;
+  cursor:  not-allowed;
+}
+.form-submit:disabled:hover {
+  background:   rgba(200, 169, 126, .08);
+  border-color: rgba(200, 169, 126, .38);
+  color:        #23272D;
+}
+
+.form-spinner {
+  display:       inline-block;
+  width:         10px;
+  height:        10px;
+  border:        1.5px solid rgba(200, 169, 126, .35);
+  border-top-color: var(--warm);
+  border-radius: 50%;
+  animation:     spin .7s linear infinite;
+  margin-right:  .5rem;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.form-error {
+  font-size:    .72rem;
+  color:        #e07070;
+  border:       1px solid rgba(224, 112, 112, .25);
+  padding:      .6rem .9rem;
+  margin-bottom: .8rem;
+  line-height:  1.5;
 }
 
 .form-success {

@@ -15,7 +15,7 @@
       <!-- Badge coming soon -->
       <p class="hero-label">
         <span class="hero-label-dot" aria-hidden="true"></span>
-        PRÓXIMAMENTE · BENIMACLET, VALENCIA
+        PRÓXIMAMENTE HOGAR MICELIO EN LA NATURALEZA
       </p>
 
       <!-- Mandala decorativo: sutil, ornamental -->
@@ -54,8 +54,8 @@
 
       <!-- Párrafo explicativo -->
       <p class="hero-intro">
-        Estamos dando vida a un nuevo hogar sociocultural en plena naturaleza.
-        Un lugar para el movimiento, la creación, el masaje y el cuidado compartido.
+        Las esporas del micelio han llegado a la naturaleza.<br>
+        Muy pronto, Hogar Micelio tendrá una nueva sede cerca de Valencia: un domo para retiros, encuentros y experiencias en conexión con la tierra, el arte y lo humano.
       </p>
 
       <div class="btn-group">
@@ -153,14 +153,17 @@
   display:        inline-flex;
   align-items:    center;
   gap:            .65rem;
-  font-size:      .6rem;
-  letter-spacing: .38em;
+  font-size:      .55rem;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color:          var(--warm);
   border:         1px solid rgba(200, 169, 126, .32);
   padding:        .48rem 1.2rem .48rem 1rem;
   border-radius:  50px;
   margin-bottom:  2rem;
+  max-width:      min(480px, 90vw);
+  text-align:     center;
+  line-height:    1.5;
 }
 .hero-label-dot {
   width:         5px;

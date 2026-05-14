@@ -61,11 +61,11 @@ const faqs = [
   },
   {
     q: '¿Cómo puedo unirme a una actividad?',
-    a: 'Puedes escribirnos al correo hogar.micelio@gmail.com, por WhatsApp al +34 633 070 753 o a través de Instagram @hogar.micelio. También puedes usar el formulario de contacto de esta página y te respondemos en menos de 24 horas.'
+    a: 'Puedes escribirnos al correo hogar.micelio@gmail.com, por WhatsApp al +34 614 19 31 76 (https://wa.me/34614193176) o a través de Instagram @hogar.micelio. También puedes usar el formulario de contacto de esta página y te respondemos en menos de 24 horas.'
   },
   {
     q: '¿Cuánto cuestan las actividades?',
-    a: 'Trabajamos con precios accesibles y en algunos casos con cuota de socio. Cada actividad tiene su propio coste, que puedes consultar directamente con nosotros. Creemos que el acceso al bienestar y la cultura no debería estar limitado por el dinero.'
+    a: 'Cada profe gestiona sus actividades y precios de manera independiente.'
   },
   {
     q: '¿Puedo facilitar mi propia actividad en el hogar?',

@@ -18,12 +18,13 @@
           <p class="section-label">Servicio especial</p>
           <h2 class="massage-title">Masaje<br><em>Integral-Sensitivo</em></h2>
           <p class="massage-body">
-            Una experiencia de contacto consciente y profundo que integra técnicas manuales con
-            presencia sensitiva. Un encuentro con tu propio cuerpo desde la calma, la escucha y el cuidado.
+            Un espacio de encuentro y escucha corporal, donde el toque acompaña lo que el cuerpo necesita en cada momento.
           </p>
           <p class="massage-body">
-            Cada sesión es única, adaptada a tu momento presente. No se trata solo de un masaje:
-            es un espacio de cuidado integral donde lo físico, lo emocional y lo sensorial se tocan con intención.
+            Cada sesión se adapta a tus ritmos internos. A través de un tacto consciente, respetuoso y sensible, se acompaña la liberación de tensiones y la regulación del sistema nervioso, favoreciendo integración, descanso profundo y reconexión interna.
+          </p>
+          <p class="massage-body">
+            Combina sensibilidad, presencia y escucha corporal. Es un acompañamiento cálido y profundo que facilita calma, sostén y nutrición afectiva.
           </p>
           <blockquote class="massage-quote">
             "Escuchar el cuerpo es el primer<br>acto de presencia."

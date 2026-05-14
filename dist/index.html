@@ -3,24 +3,155 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Hogar Micelio es un espacio vivo e interdisciplinar en Benimaclet, Valencia. Movimiento, arte, salud y comunidad en una asociación sociocultural sin ánimo de lucro."
-    />
-    <title>Hogar Micelio — Espacio Cultural · Benimaclet, Valencia</title>
+
+    <!-- ═══════════════════════════════════════════
+         PRIMARY META
+    ═══════════════════════════════════════════ -->
+    <title>Hogar Micelio — Espacio Biocéntrico · Benimaclet, Valencia</title>
+    <meta name="description" content="Hogar Micelio es un espacio vivo e interdisciplinar en Benimaclet, Valencia. Biodanza, Yoga, Acroyoga, Teatro y más. Asociación sociocultural sin ánimo de lucro." />
+    <meta name="keywords" content="hogar micelio, espacio biocéntrico valencia, benimaclet, biodanza valencia, yoga benimaclet, acroyoga valencia, teatro valencia, asociación sociocultural, movimiento consciente, bienestar valencia, coplitas para crecer" />
+    <meta name="author" content="Hogar Micelio" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#0e0b06" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://hogarmicelio.es/" />
+
+    <!-- ═══════════════════════════════════════════
+         GEO
+    ═══════════════════════════════════════════ -->
+    <meta name="geo.region" content="ES-VC" />
+    <meta name="geo.placename" content="Benimaclet, Valencia, España" />
+    <meta name="geo.position" content="39.4872;-0.3644" />
+    <meta name="ICBM" content="39.4872, -0.3644" />
+
+    <!-- ═══════════════════════════════════════════
+         OPEN GRAPH
+    ═══════════════════════════════════════════ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hogar Micelio" />
+    <meta property="og:title" content="Hogar Micelio — Espacio Biocéntrico · Benimaclet, Valencia" />
+    <meta property="og:description" content="Biodanza, Yoga, Acroyoga, Teatro y más en Benimaclet, Valencia. Un espacio vivo de movimiento, arte y comunidad." />
+    <meta property="og:url" content="https://hogarmicelio.es/" />
+    <meta property="og:image" content="https://hogarmicelio.es/images/portada_desktop.png" />
+    <meta property="og:image:alt" content="Hogar Micelio — Espacio Biocéntrico en Benimaclet, Valencia" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- ═══════════════════════════════════════════
+         TWITTER / X CARD
+    ═══════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hogar.micelio" />
+    <meta name="twitter:title" content="Hogar Micelio — Espacio Biocéntrico · Benimaclet, Valencia" />
+    <meta name="twitter:description" content="Biodanza, Yoga, Acroyoga, Teatro y más en Benimaclet, Valencia. Un espacio vivo de movimiento, arte y comunidad." />
+    <meta name="twitter:image" content="https://hogarmicelio.es/images/portada_desktop.png" />
+    <meta name="twitter:image:alt" content="Hogar Micelio — Espacio Biocéntrico en Benimaclet, Valencia" />
+
+    <!-- ═══════════════════════════════════════════
+         PWA / APPLE
+    ═══════════════════════════════════════════ -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Hogar Micelio" />
+    <link rel="apple-touch-icon" href="/images/logo_micelio.png" />
+
+    <!-- ═══════════════════════════════════════════
+         FAVICON
+    ═══════════════════════════════════════════ -->
     <link rel="icon" type="image/png" href="/images/logo_micelio.png" />
 
-    <!-- Fonts: preconnect before the stylesheet so the TCP handshake
-         happens in parallel with HTML parsing (not render-blocking) -->
+    <!-- ═══════════════════════════════════════════
+         JSON-LD STRUCTURED DATA
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["LocalBusiness", "CulturalOrganization"],
+          "@id": "https://hogarmicelio.es/#organization",
+          "name": "Hogar Micelio",
+          "alternateName": "Hogar Micelio — Espacio Biocéntrico",
+          "description": "Asociación sociocultural sin ánimo de lucro en Benimaclet, Valencia. Espacio interdisciplinar de movimiento, arte, salud y comunidad.",
+          "url": "https://hogarmicelio.es/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://hogarmicelio.es/images/logo_micelio.png"
+          },
+          "image": "https://hogarmicelio.es/images/portada_desktop.png",
+          "telephone": "+34614193176",
+          "email": "hogar.micelio@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carrer del Poeta Altet, 11",
+            "addressLocality": "Benimaclet",
+            "addressRegion": "Valencia",
+            "postalCode": "46020",
+            "addressCountry": "ES"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.4872,
+            "longitude": -0.3644
+          },
+          "sameAs": [
+            "https://www.instagram.com/hogar.micelio/"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "10:00",
+              "closes": "22:00"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Actividades semanales",
+            "itemListElement": [
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Biodanza", "description": "Sistema de integración humana a través de la música y el movimiento"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Yoga Vinyasa", "description": "Práctica de yoga dinámico sincronizado con la respiración"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Acroyoga", "description": "Práctica de confianza, equilibrio y juego corporal en pareja"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ki-Teatro", "description": "Investigación escénica que une energía vital y juego teatral"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coplitas para crecer", "description": "Encuentro de voz, coplas y tradición oral"}}
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://hogarmicelio.es/#website",
+          "url": "https://hogarmicelio.es/",
+          "name": "Hogar Micelio",
+          "description": "Espacio biocéntrico vivo e interdisciplinar en Benimaclet, Valencia",
+          "publisher": {"@id": "https://hogarmicelio.es/#organization"},
+          "inLanguage": "es-ES"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://hogarmicelio.es/#webpage",
+          "url": "https://hogarmicelio.es/",
+          "name": "Hogar Micelio — Espacio Biocéntrico · Benimaclet, Valencia",
+          "isPartOf": {"@id": "https://hogarmicelio.es/#website"},
+          "about": {"@id": "https://hogarmicelio.es/#organization"},
+          "inLanguage": "es-ES"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+         FONTS
+    ═══════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- font-display=swap keeps text visible while fonts load -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500&display=swap"
     />
-    <script type="module" crossorigin src="/assets/index-BeB9Wxce.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C6_y-X4N.css">
+    <script type="module" crossorigin src="/assets/index-D4-3h-Qm.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-5V2KHUXc.css">
   </head>
   <body>
     <div id="app"></div>

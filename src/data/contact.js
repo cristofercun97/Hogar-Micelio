@@ -9,8 +9,8 @@ export const contactLinks = [
   {
     id: 'phone',
     label: 'Teléfono',
-    value: '+34 633 070 753',
-    href: 'tel:+34633070753',
+    value: '+34 614 19 31 76',
+    href: 'tel:+34614193176',
     external: false,
   },
   {
@@ -34,7 +34,6 @@ export const navLinks = [
   { href: '#space',         label: 'El hogar' },
   { href: '#activities',    label: 'Actividades' },
   { href: '#massage',       label: 'Masaje' },
-  { href: '#testimonials',  label: 'Testimonios' },
   { href: '#faq',           label: 'FAQ' },
   { href: '#contact',       label: 'Contacto' },
 ]

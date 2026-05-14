@@ -68,7 +68,7 @@
             </p>
           </div>
           <a
-            href="https://wa.me/34633070753?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20del%20espacio."
+            href="https://wa.me/34614193176?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20del%20espacio."
             target="_blank"
             rel="noopener noreferrer"
             class="rent-btn"

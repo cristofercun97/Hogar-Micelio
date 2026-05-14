@@ -17,9 +17,8 @@
             y la naturaleza convergen en comunidad.
           </p>
           <blockquote class="about-quote">
-            Como las raíces invisibles que tejen el bosque,<br>
-            somos una red viva de personas que cuidan,<br>
-            crean y crecen juntas.
+            Como el micelio bajo la tierra,<br>
+            tejemos redes de cuidado, creación y crecimiento compartido.
           </blockquote>
           <p class="section-body">
             Somos una asociación sin ánimo de lucro. Cada actividad, cada práctica, cada encuentro

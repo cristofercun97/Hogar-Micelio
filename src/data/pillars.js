@@ -3,13 +3,13 @@ export const pillars = [
     id: 1,
     icon: 'movimiento',
     name: 'Movimiento',
-    desc: 'El cuerpo como territorio de exploración. Prácticas somáticas, danza, yoga y acroyoga para habitar el presente.',
+    desc: 'El cuerpo como territorio de exploración. Prácticas somáticas, biodanza, yoga y acroyoga para habitar el presente.',
   },
   {
     id: 2,
     icon: 'comunidad',
     name: 'Comunidad',
-    desc: 'Una red de personas que se eligen. Espacios donde emergen vínculos genuinos y proyectos en común.',
+    desc: 'Una comunidad viva donde los vínculos se vuelven raíz. Compartimos, creamos y crecemos en red, cocreando nuevas formas de habitar y sostener la vida juntos.',
   },
   {
     id: 3,

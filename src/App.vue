@@ -10,7 +10,6 @@
     <WeekendSection />
     <ActivitiesSection />
     <MassageSection />
-    <TestimonialsSection />
     <FaqSection />
     <ContactSection />
   </main>
@@ -29,7 +28,6 @@ import SpaceSection      from '@/sections/SpaceSection.vue'
 import WeekendSection    from '@/sections/WeekendSection.vue'
 import ActivitiesSection from '@/sections/ActivitiesSection.vue'
 import MassageSection    from '@/sections/MassageSection.vue'
-import TestimonialsSection from '@/sections/TestimonialsSection.vue'
 import FaqSection        from '@/sections/FaqSection.vue'
 import ContactSection    from '@/sections/ContactSection.vue'
 import { useGlobalFadeObserver } from '@/composables/useFadeObserver'

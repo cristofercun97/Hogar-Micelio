@@ -4,7 +4,7 @@
 
       <p class="footer-logo">
         <img src="/images/logo_micelio.png" alt="Hogar Micelio" class="footer-logo-img" />
-        <span style="color:#EFEAE0">Hogar</span> <em>Micelio</em>
+        <span style="color:#ffffff">Hogar</span> <em>Micelio</em>
       </p>
 
       <div class="footer-sep" aria-hidden="true"><span>&#10022;</span></div>
@@ -34,7 +34,7 @@
         </a>
 
         <a
-          href="https://wa.me/34633070753"
+          href="https://wa.me/34614193176"
           target="_blank"
           rel="noopener noreferrer"
           class="footer-btn footer-btn--wa"
@@ -72,7 +72,7 @@
 footer {
   position:        relative;
   z-index:         2;
-  background:      rgba(10, 8, 4, .93);
+  background:      #5c7032;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top:      1px solid rgba(200, 169, 126, .1);
@@ -97,31 +97,31 @@ footer {
   font-weight:    300;
   font-size:      1.7rem;
   letter-spacing: .07em;
-  color:          var(--cream);
-  opacity:        .65;
+  color:          #ffffff;
+  opacity:        1;
 }
 .footer-logo-img {
   width:       57px;
   height:      57px;
   object-fit:  contain;
 }
-.footer-logo em { font-style: italic; color: var(--warm); }
+.footer-logo em { font-style: italic; color: #ffffff; }
 
 .footer-sep {
   display:    flex;
   align-items: center;
   gap:        1rem;
   width:      min(180px, 55vw);
-  opacity:    .2;
+  opacity:    .25;
 }
 .footer-sep::before,
 .footer-sep::after {
   content:    '';
   flex:       1;
   height:     1px;
-  background: var(--warm);
+  background: #ffffff;
 }
-.footer-sep span { font-size: .5rem; color: var(--warm); }
+.footer-sep span { font-size: .5rem; color: #ffffff; }
 
 .footer-links {
   display:    flex;
@@ -134,11 +134,11 @@ footer {
   font-size:      .6rem;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color:          var(--warm);
-  opacity:        .45;
+  color:          #ffffff;
+  opacity:        .7;
   transition:     opacity var(--t);
 }
-.footer-links a:hover { opacity: .85; }
+.footer-links a:hover { opacity: 1; }
 
 /* ── Contact buttons ── */
 .footer-contact {
@@ -157,16 +157,16 @@ footer {
   letter-spacing: .14em;
   text-transform: uppercase;
   padding:        .65rem 1.3rem;
-  border:         1px solid rgba(200, 169, 126, .22);
-  color:          var(--warm);
-  opacity:        .75;
+  border:         1px solid rgba(255, 255, 255, .35);
+  color:          #ffffff;
+  opacity:        .85;
   transition:     opacity var(--t), background var(--t), border-color var(--t);
   white-space:    nowrap;
 }
 .footer-btn:hover {
   opacity:      1;
-  background:   rgba(200, 169, 126, .1);
-  border-color: rgba(200, 169, 126, .55);
+  background:   rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .7);
 }
 .footer-btn-icon {
   width:  16px;
@@ -179,16 +179,16 @@ footer {
   font-style:   italic;
   font-weight:  300;
   font-size:    .97rem;
-  color:        var(--warm);
-  opacity:      .28;
+  color:        #ffffff;
+  opacity:      .55;
 }
 
 .footer-copy {
   font-size:      .55rem;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color:          var(--warm);
-  opacity:        .18;
+  color:          #ffffff;
+  opacity:        .4;
 }
 
 @media (max-width: 640px) {
