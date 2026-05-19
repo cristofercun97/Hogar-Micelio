@@ -4,12 +4,20 @@
     <div class="container">
       <div class="massage-grid fade-up">
         <figure class="massage-photo-wrap">
-          <img
-            src="/images/masaje.jpg"
-            alt="Sesión de Masaje Integral-Sensitivo en Hogar Micelio"
-            class="massage-photo"
-            loading="lazy"
-          />
+          <div class="massage-photo-pair">
+            <img
+              src="/images/masaje.png"
+              alt="Sesión de Masaje Integral-Sensitivo en Hogar Micelio"
+              class="massage-photo"
+              loading="lazy"
+            />
+            <img
+              src="/images/mesaje_1.jpg"
+              alt="Masaje Integral-Sensitivo en Hogar Micelio"
+              class="massage-photo"
+              loading="lazy"
+            />
+          </div>
           <div class="massage-photo-overlay" aria-hidden="true"></div>
           <figcaption class="massage-photo-caption">Masaje Integral-Sensitivo</figcaption>
         </figure>
@@ -79,9 +87,17 @@
   z-index:        2;
 }
 
+.massage-photo-pair {
+  display:        flex;
+  flex-direction: column;
+  width:          100%;
+  height:         100%;
+}
+
 .massage-photo {
   width:       100%;
-  height:      100%;
+  flex:        1;
+  min-height:  0;
   object-fit:  cover;
   object-position: center 30%;
   display:     block;

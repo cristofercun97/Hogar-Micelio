@@ -101,7 +101,7 @@ function closeMenu() {
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background:    rgba(92, 112, 50, .95);
+  background:    rgba(45, 68, 58, .95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   padding:       1rem clamp(1.5rem, 5vw, 3.5rem);
@@ -185,7 +185,7 @@ function closeMenu() {
   position:        fixed;
   inset:           0;
   z-index:         101;
-  background:      rgba(92, 112, 50, .98);
+  background:      rgba(45, 68, 58, .98);
   display:         flex;
   flex-direction:  column;
   padding:         0 1.8rem 2.5rem;

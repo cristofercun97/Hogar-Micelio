@@ -72,7 +72,7 @@
 footer {
   position:        relative;
   z-index:         2;
-  background:      #5c7032;
+  background:      #2D443A;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top:      1px solid rgba(200, 169, 126, .1);
