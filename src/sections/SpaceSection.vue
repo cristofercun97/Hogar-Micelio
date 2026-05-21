@@ -117,6 +117,8 @@ const modalOpen = ref(false)
 const extraImages = [
   { src: '/images/12.png', alt: 'Hogar Micelio - imagen adicional 1' },
   { src: '/images/13.png', alt: 'Hogar Micelio - imagen adicional 2' },
+  { src: '/images/21.jpg', alt: 'Hogar Micelio - imagen adicional 3' },
+  { src: '/images/22.jpg', alt: 'Hogar Micelio - imagen adicional 4' },
 ]
 </script>
 
