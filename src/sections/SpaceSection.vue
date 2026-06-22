@@ -9,17 +9,46 @@
 
       <div class="space-grid">
         <div class="space-gallery fade-up">
-          <div class="space-ph-main">
-            <img src="/images/9.png" alt="Sala principal de Hogar Micelio" class="space-img" />
-          </div>
+          <button
+            type="button"
+            class="space-ph-main gallery-trigger"
+            :aria-label="`Ver imagen: ${previewImages[0].alt}`"
+            @click="openLightbox(0)"
+          >
+            <SpaceGalleryImage
+              :src="previewImages[0].src"
+              :alt="previewImages[0].alt"
+              loading="eager"
+            />
+          </button>
+
           <div class="space-ph-row">
-            <div>
-              <img src="/images/10.png" alt="Detalle del espacio" class="space-img" />
-            </div>
-            <div>
-              <img src="/images/11.png" alt="Terraza de Hogar Micelio" class="space-img" />
-            </div>
+            <button
+              v-for="(img, i) in previewImages.slice(1)"
+              :key="img.id"
+              type="button"
+              class="gallery-trigger"
+              :aria-label="`Ver imagen: ${img.alt}`"
+              @click="openLightbox(i + 1)"
+            >
+              <SpaceGalleryImage :src="img.src" :alt="img.alt" />
+            </button>
           </div>
+
+          <button
+            type="button"
+            class="gallery-count-badge"
+            aria-label="Abrir galería completa del espacio"
+            @click="openLightbox(0)"
+          >
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="12" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="1" y="12" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="12" y="12" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            {{ spaceGallery.length }} fotos
+          </button>
         </div>
 
         <div class="space-info fade-up">
@@ -44,14 +73,19 @@
             </div>
           </div>
 
-          <button class="btn-more-photos" @click="modalOpen = true" aria-label="Ver más imágenes del espacio">
+          <button
+            type="button"
+            class="btn-more-photos"
+            aria-label="Ver galería completa del espacio"
+            @click="openLightbox(0)"
+          >
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="btn-more-icon">
               <rect x="1" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
               <rect x="12" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
               <rect x="1" y="12" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
               <rect x="12" y="12" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
             </svg>
-            Ver más imágenes
+            Ver galería completa
           </button>
         </div>
       </div>
@@ -84,24 +118,74 @@
     </div>
   </section>
 
-  <!-- Modal galería -->
+  <!-- Lightbox galería -->
   <Teleport to="body">
     <Transition name="modal-fade">
       <div
-        v-if="modalOpen"
-        class="modal-overlay"
+        v-if="lightboxOpen"
+        class="lightbox-overlay"
         role="dialog"
         aria-modal="true"
-        aria-label="Galería del espacio"
-        @click.self="modalOpen = false"
-        @keydown.escape="modalOpen = false"
+        :aria-label="`Galería del espacio — imagen ${activeIndex + 1} de ${spaceGallery.length}`"
+        @click.self="closeLightbox"
       >
-        <div class="modal-box">
-          <button class="modal-close" @click="modalOpen = false" aria-label="Cerrar galería">&#x2715;</button>
-          <div class="modal-grid">
-            <div class="modal-img-wrap" v-for="(img, i) in extraImages" :key="i">
-              <img :src="img.src" :alt="img.alt" class="modal-img" />
+        <div class="lightbox-panel">
+          <div class="lightbox-toolbar">
+            <span class="lightbox-counter">{{ activeIndex + 1 }} / {{ spaceGallery.length }}</span>
+            <button type="button" class="lightbox-close" aria-label="Cerrar galería" @click="closeLightbox">
+              &#x2715;
+            </button>
+          </div>
+
+          <div class="lightbox-stage">
+            <button
+              type="button"
+              class="lightbox-nav lightbox-nav--prev"
+              aria-label="Imagen anterior"
+              :disabled="activeIndex === 0"
+              @click="prevImage"
+            >
+              &#8249;
+            </button>
+
+            <div class="lightbox-main">
+              <Transition name="slide-fade" mode="out-in">
+                <div :key="activeImage.id" class="lightbox-main-inner">
+                  <SpaceGalleryImage
+                    :src="activeImage.src"
+                    :alt="activeImage.alt"
+                    loading="eager"
+                  />
+                </div>
+              </Transition>
+              <p class="lightbox-caption">{{ activeImage.alt }}</p>
             </div>
+
+            <button
+              type="button"
+              class="lightbox-nav lightbox-nav--next"
+              aria-label="Imagen siguiente"
+              :disabled="activeIndex === spaceGallery.length - 1"
+              @click="nextImage"
+            >
+              &#8250;
+            </button>
+          </div>
+
+          <div class="lightbox-thumbs" role="list" aria-label="Miniaturas de la galería">
+            <button
+              v-for="(img, i) in spaceGallery"
+              :key="img.id"
+              type="button"
+              role="listitem"
+              class="lightbox-thumb"
+              :class="{ active: i === activeIndex }"
+              :aria-label="`Ver imagen ${i + 1}: ${img.alt}`"
+              :aria-current="i === activeIndex ? 'true' : undefined"
+              @click="goToImage(i)"
+            >
+              <SpaceGalleryImage :src="img.src" :alt="img.alt" />
+            </button>
           </div>
         </div>
       </div>
@@ -110,16 +194,56 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
+import SpaceGalleryImage from '@/components/SpaceGalleryImage.vue'
+import { spaceGallery } from '@/data/spaceGallery'
 import { resources } from '@/data/resources'
 
-const modalOpen = ref(false)
-const extraImages = [
-  { src: '/images/12.png', alt: 'Hogar Micelio - imagen adicional 1' },
-  { src: '/images/13.png', alt: 'Hogar Micelio - imagen adicional 2' },
-  { src: '/images/21.jpg', alt: 'Hogar Micelio - imagen adicional 3' },
-  { src: '/images/22.jpg', alt: 'Hogar Micelio - imagen adicional 4' },
-]
+const lightboxOpen = ref(false)
+const activeIndex  = ref(0)
+
+const previewImages = computed(() => spaceGallery.slice(0, 3))
+const activeImage   = computed(() => spaceGallery[activeIndex.value])
+
+function openLightbox(index) {
+  activeIndex.value = index
+  lightboxOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+function closeLightbox() {
+  lightboxOpen.value = false
+  document.body.style.overflow = ''
+}
+
+function prevImage() {
+  if (activeIndex.value > 0) activeIndex.value--
+}
+
+function nextImage() {
+  if (activeIndex.value < spaceGallery.length - 1) activeIndex.value++
+}
+
+function goToImage(index) {
+  activeIndex.value = index
+}
+
+function onKeydown(e) {
+  if (!lightboxOpen.value) return
+  if (e.key === 'Escape')      closeLightbox()
+  if (e.key === 'ArrowLeft')   prevImage()
+  if (e.key === 'ArrowRight')  nextImage()
+}
+
+watch(lightboxOpen, (open) => {
+  if (open) window.addEventListener('keydown', onKeydown)
+  else      window.removeEventListener('keydown', onKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 </script>
 
 <style scoped>
@@ -156,50 +280,67 @@ const extraImages = [
 }
 
 .space-gallery {
+  position:              relative;
   display:               grid;
   grid-template-rows:    1.8fr 1fr;
   gap:                   .9rem;
   height:                560px;
 }
 
-.space-ph-main {
-  position: relative;
-  overflow: hidden;
-  border:   1px solid rgba(200, 169, 126, .1);
+.gallery-trigger {
+  position:   relative;
+  overflow:   hidden;
+  border:     1px solid rgba(200, 169, 126, .1);
+  padding:    0;
+  background: none;
+  cursor:     pointer;
+  width:      100%;
+  height:     100%;
+  text-align: left;
 }
-.space-ph-main .photo-ph {
-  background: rgba(195, 170, 132, .12);
+.gallery-trigger:focus-visible {
+  outline:        2px solid var(--warm);
+  outline-offset: 2px;
+}
+
+.space-ph-main {
+  min-height: 0;
 }
 
 .space-ph-row {
   display:               grid;
   grid-template-columns: 1fr 1fr;
   gap:                   .9rem;
-}
-.space-ph-row > div {
-  position: relative;
-  overflow: hidden;
-  border:   1px solid rgba(200, 169, 126, .1);
-}
-.space-ph-row .photo-ph {
-  background: rgba(195, 170, 132, .12);
+  min-height:            0;
 }
 
-/* Images */
-.space-img {
-  width:       100%;
-  height:      100%;
-  object-fit:  cover;
-  object-position: center;
-  display:     block;
-  transition:  transform .6s cubic-bezier(.25, .46, .45, .94);
+.gallery-count-badge {
+  position:        absolute;
+  right:           .85rem;
+  bottom:          .85rem;
+  z-index:         2;
+  display:         inline-flex;
+  align-items:     center;
+  gap:             .45rem;
+  padding:         .45rem .85rem;
+  font-family:     var(--font-sans);
+  font-size:       .58rem;
+  letter-spacing:  .16em;
+  text-transform:  uppercase;
+  color:           #F2EDE3;
+  background:      rgba(14, 11, 6, .72);
+  backdrop-filter: blur(8px);
+  border:          1px solid rgba(200, 169, 126, .25);
+  cursor:          pointer;
+  transition:      background var(--t), border-color var(--t);
 }
-.space-ph-main:hover .space-img,
-.space-ph-row > div:hover .space-img {
-  transform: scale(1.04);
+.gallery-count-badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+.gallery-count-badge:hover {
+  background:   rgba(14, 11, 6, .88);
+  border-color: rgba(200, 169, 126, .5);
 }
 
-.space-desc    { margin-bottom: 2.8rem; }
+.space-desc { margin-bottom: 2.8rem; }
 
 .resources-heading {
   font-size:      .58rem;
@@ -252,36 +393,26 @@ const extraImages = [
 @media (max-width: 640px) {
   .space-header  { margin-bottom: 2.5rem; }
 
-  /* Galería: columna única — imagen grande arriba, dos pequeñas abajo */
   .space-gallery {
-    height:                auto;
-    grid-template-rows:    auto auto;
-    gap:                   .5rem;
+    height:             auto;
+    grid-template-rows: auto auto;
+    gap:                .5rem;
   }
-  .space-ph-main {
-    aspect-ratio: 4 / 3;
-    height:       auto;
-  }
-  .space-ph-row {
-    gap: .5rem;
-  }
-  .space-ph-row > div {
-    aspect-ratio: 1 / 1;
-    height:       auto;
-  }
+  .space-ph-main { aspect-ratio: 4 / 3; height: auto; }
+  .space-ph-row  { gap: .5rem; }
+  .space-ph-row .gallery-trigger { aspect-ratio: 1 / 1; height: auto; }
 
-  /* Info */
-  .space-desc    { margin-bottom: 1.8rem; font-size: .9rem; }
+  .space-desc     { margin-bottom: 1.8rem; font-size: .9rem; }
   .resources-grid { grid-template-columns: 1fr 1fr; }
   .btn-more-photos { width: 100%; justify-content: center; margin-top: 1.5rem; }
 }
 
 /* ── Alquiler del espacio ── */
 .rent-banner {
-  margin-top:    4rem;
-  border:        1px solid rgba(200, 169, 126, .18);
-  background:    rgba(200, 169, 126, .05);
-  padding:       clamp(2rem, 3vw, 2.8rem) clamp(2rem, 3vw, 3rem);
+  margin-top: 4rem;
+  border:     1px solid rgba(200, 169, 126, .18);
+  background: rgba(200, 169, 126, .05);
+  padding:    clamp(2rem, 3vw, 2.8rem) clamp(2rem, 3vw, 3rem);
 }
 
 .rent-inner {
@@ -381,65 +512,144 @@ const extraImages = [
 }
 .btn-more-icon { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ── Modal ── */
-.modal-overlay {
-  position:   fixed;
-  inset:      0;
-  z-index:    200;
-  background: rgba(10, 8, 4, .92);
-  display:    flex;
+/* ── Lightbox ── */
+.lightbox-overlay {
+  position:        fixed;
+  inset:           0;
+  z-index:         200;
+  background:      rgba(10, 8, 4, .94);
+  display:         flex;
   align-items:     center;
   justify-content: center;
-  padding:    2rem;
+  padding:         clamp(1rem, 3vw, 2rem);
 }
 
-.modal-box {
-  position:   relative;
-  max-width:  900px;
-  width:      100%;
-  background: #EEEEE6;
-  padding:    2rem;
+.lightbox-panel {
+  width:      min(1100px, 100%);
+  max-height: 100%;
+  display:    flex;
+  flex-direction: column;
+  gap:        1rem;
 }
 
-.modal-close {
-  position:   absolute;
-  top:        1rem;
-  right:      1rem;
+.lightbox-toolbar {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+}
+
+.lightbox-counter {
+  font-size:      .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color:          rgba(242, 237, 227, .55);
+}
+
+.lightbox-close {
   background: transparent;
   border:     none;
-  font-size:  1.1rem;
+  font-size:  1.3rem;
   color:      var(--warm);
   cursor:     pointer;
-  opacity:    .7;
+  opacity:    .75;
+  padding:    .25rem .5rem;
   transition: opacity var(--t);
 }
-.modal-close:hover { opacity: 1; }
+.lightbox-close:hover { opacity: 1; }
 
-.modal-grid {
-  display:               grid;
-  grid-template-columns: 1fr 1fr;
-  gap:                   .8rem;
-  margin-top:            .5rem;
+.lightbox-stage {
+  display:     flex;
+  align-items: center;
+  gap:         .75rem;
+  min-height:  0;
 }
 
-.modal-img-wrap {
+.lightbox-main {
+  flex:       1;
+  min-width:  0;
+  display:    flex;
+  flex-direction: column;
+  gap:        .75rem;
+}
+
+.lightbox-main-inner {
+  aspect-ratio: 16 / 10;
+  max-height:   min(62vh, 640px);
+  border:       1px solid rgba(200, 169, 126, .15);
   overflow:     hidden;
-  aspect-ratio: 4 / 3;
-}
-.modal-img {
-  width:      100%;
-  height:     100%;
-  object-fit: cover;
-  display:    block;
+  background:   rgba(195, 170, 132, .06);
 }
 
-/* Modal transition */
+.lightbox-caption {
+  font-size:   .78rem;
+  line-height: 1.5;
+  color:       rgba(242, 237, 227, .55);
+  text-align:  center;
+  padding:     0 .5rem;
+}
+
+.lightbox-nav {
+  flex-shrink: 0;
+  width:       2.4rem;
+  height:      2.4rem;
+  border:      1px solid rgba(200, 169, 126, .25);
+  background:  rgba(200, 169, 126, .06);
+  color:       var(--warm);
+  font-size:   1.6rem;
+  line-height: 1;
+  cursor:      pointer;
+  transition:  background var(--t), border-color var(--t), opacity var(--t);
+}
+.lightbox-nav:hover:not(:disabled) {
+  background:   rgba(200, 169, 126, .16);
+  border-color: rgba(200, 169, 126, .5);
+}
+.lightbox-nav:disabled {
+  opacity: .25;
+  cursor:  not-allowed;
+}
+
+.lightbox-thumbs {
+  display:   flex;
+  gap:       .55rem;
+  overflow-x: auto;
+  padding:   .25rem .1rem .5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 169, 126, .35) transparent;
+}
+
+.lightbox-thumb {
+  flex:       0 0 72px;
+  width:      72px;
+  height:     54px;
+  padding:    0;
+  border:     2px solid transparent;
+  background: none;
+  cursor:     pointer;
+  overflow:   hidden;
+  opacity:    .55;
+  transition: opacity var(--t), border-color var(--t);
+}
+.lightbox-thumb:hover,
+.lightbox-thumb.active {
+  opacity:      1;
+  border-color: var(--warm);
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active { transition: opacity .25s ease, transform .25s ease; }
+.slide-fade-enter-from   { opacity: 0; transform: translateX(12px); }
+.slide-fade-leave-to     { opacity: 0; transform: translateX(-12px); }
+
 .modal-fade-enter-active,
 .modal-fade-leave-active { transition: opacity .3s ease; }
 .modal-fade-enter-from,
 .modal-fade-leave-to     { opacity: 0; }
 
 @media (max-width: 640px) {
-  .modal-grid { grid-template-columns: 1fr; }
+  .lightbox-stage { gap: .35rem; }
+  .lightbox-nav   { width: 2rem; height: 2rem; font-size: 1.3rem; }
+  .lightbox-main-inner { max-height: 48vh; }
+  .lightbox-thumb { flex: 0 0 60px; width: 60px; height: 45px; }
 }
 </style>

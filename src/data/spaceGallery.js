@@ -1,0 +1,16 @@
+export const spaceGallery = [
+  { id: 1,  src: '/images/space/space-01.png', alt: 'Sala principal de Hogar Micelio' },
+  { id: 2,  src: '/images/space/space-02.png', alt: 'Espacio de movimiento en Hogar Micelio' },
+  { id: 3,  src: '/images/space/space-03.png', alt: 'Detalle del interior del hogar' },
+  { id: 4,  src: '/images/space/space-04.png', alt: 'Zona de práctica y encuentro' },
+  { id: 5,  src: '/images/space/space-05.png', alt: 'Ambiente cálido del espacio' },
+  { id: 6,  src: '/images/space/space-06.png', alt: 'Vista del hogar en Benimaclet' },
+  { id: 7,  src: '/images/space/space-07.png', alt: 'Terraza y zona exterior' },
+  { id: 8,  src: '/images/space/space-08.png', alt: 'Espacio para actividades grupales' },
+  { id: 9,  src: '/images/space/space-09.png', alt: 'Rincón del hogar Micelio' },
+  { id: 10, src: '/images/space/space-10.png', alt: 'Detalle decorativo del espacio' },
+  { id: 11, src: '/images/space/space-11.png', alt: 'Zona de descanso y encuentro' },
+  { id: 12, src: '/images/space/space-12.png', alt: 'Vista amplia del hogar' },
+  { id: 13, src: '/images/space/space-13.png', alt: 'Espacio luminoso para talleres' },
+  { id: 14, src: '/images/space/space-14.png', alt: 'Ambiente acogedor de Hogar Micelio' },
+]
